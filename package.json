@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
   },
   "author": "Simon Riple",
   "license": "ISC"
