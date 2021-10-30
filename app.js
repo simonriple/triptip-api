@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const Trip = require("./tripModel");
-const mongodb_connection_string = process.env.mongodb_connection_string;
+const mongodb_connection_string = process.env.CUSTOMCONNSTR_mongodb_connection_string;
 const port = process.env.PORT || 4000;
 
 mongoose.connect(mongodb_connection_string, {}).then(() => {
