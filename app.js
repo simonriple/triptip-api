@@ -41,7 +41,7 @@ mongoose.connect(mongodb_connection_string, {}).then(() => {
 
   app.put("/api/trip/:tripId/like", async (req, res) => {
     const tripId = req.params.tripId;
-    await Trip.findByIdAndUpdate(tripId, {
+    await Trip.findOneAndUpdate({id: tripId}, {
       $inc: {
         likes: 1,
       },
