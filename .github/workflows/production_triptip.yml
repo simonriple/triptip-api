@@ -51,5 +51,7 @@ jobs:
         with:
           app-name: 'triptip'
           slot-name: 'Production'
+          env:
+            mongodb_connection_string: ${{  secrets.MONGODB_CONNECTION_STRING  }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_50A5E7EC7CEA49B78FF73CF34C0CBD9E }}
           package: .
