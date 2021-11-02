@@ -63,6 +63,7 @@ mongoose.connect(mongodb_connection_string, {}).then(() => {
         },
       }
     );
+    res.json("success");
   });
 
   app.listen(port, () => {
