@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const Trip = require("./tripModel");
-const mongodb_connection_string = process.env.CUSTOMCONNSTR_mongodb_connection_string;
+const mongodb_connection_string =
+  process.env.CUSTOMCONNSTR_mongodb_connection_string;
 const port = process.env.PORT || 4000;
 
 mongoose.connect(mongodb_connection_string, {}).then(() => {
@@ -41,12 +42,27 @@ mongoose.connect(mongodb_connection_string, {}).then(() => {
 
   app.put("/api/trip/:tripId/like", async (req, res) => {
     const tripId = req.params.tripId;
-    await Trip.findOneAndUpdate({id: tripId}, {
-      $inc: {
-        likes: 1,
-      },
-    });
+    await Trip.findOneAndUpdate(
+      { id: tripId },
+      {
+        $inc: {
+          likes: 1,
+        },
+      }
+    );
     res.json("success");
+  });
+
+  app.put("/api/trip/:tripId/comment", async (req, res) => {
+    const tripId = req.params.tripId;
+    await Trip.findOneAndUpdate(
+      { id: tripId },
+      {
+        $push: {
+          comments: { ...req.body },
+        },
+      }
+    );
   });
 
   app.listen(port, () => {
